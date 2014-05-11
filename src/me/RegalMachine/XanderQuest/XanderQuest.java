@@ -3,6 +3,7 @@ package me.RegalMachine.XanderQuest;
 import java.io.File;
 import java.io.InputStream;
 
+import me.RegalMachine.XanderQuest.Regions.Commands.RegionCommands;
 import me.RegalMachine.XanderQuest.Regions.Sessions.StartSelectionSessionCommand;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -23,7 +24,7 @@ public class XanderQuest extends JavaPlugin{
 		instance = this;
 		
 		getCommand("qwand").setExecutor(new StartSelectionSessionCommand());
-		
+		getCommand("region").setExecutor(new RegionCommands());
 	}
 	
 	@Override

@@ -1,0 +1,9 @@
+name: XanderQuest
+version: 1.0.0
+author: REGAL_MACHINE
+main: me.RegalMachine.XanderQuest.XanderQuest
+commands:
+  qwand:
+    description: GIves you a QuestWand for to select regions with.
+  region:
+    description: all the Quest Region commands
