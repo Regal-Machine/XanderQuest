@@ -25,7 +25,7 @@ public class RegionCommands implements CommandExecutor{
 					p.sendMessage(ChatColor.AQUA + "You must select a region first!");
 				}
 			}else{
-				p.sendMessage(ChatColor.AQUA + "You must select a region first!");
+				p.sendMessage(ChatColor.AQUA + "You must select a Start a session first!");
 			}
 		}
 		
