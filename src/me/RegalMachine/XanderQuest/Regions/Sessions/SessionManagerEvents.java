@@ -2,6 +2,7 @@ package me.RegalMachine.XanderQuest.Regions.Sessions;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -20,15 +21,24 @@ public class SessionManagerEvents implements Listener{
 	@EventHandler
 	public void onClick(PlayerInteractEvent e){
 		// TODO: Handle the left and right click of blocks with QuestWand in order to make selections for regions in the world.
+		
+		Player player = e.getPlayer();
+		
 		if(e.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
-			if(e.getPlayer().getItemInHand().equals(Material.BLAZE_ROD) && SessionManager.selSessions.containsKey(e.getPlayer())){
-				SessionManager.selSessions.get(e.getPlayer()).setLocationTwo(e.getClickedBlock().getLocation());
-				e.getPlayer().sendMessage(ChatColor.AQUA + "Block One Selected!");
+			if(player.getInventory().getItemInHand().getType().equals(Material.BLAZE_ROD) && SessionManager.selSessions.containsKey(player)){
+				SessionManager.selSessions.get(player).setLocationTwo(e.getClickedBlock().getLocation().toVector());
+				player.sendMessage(ChatColor.AQUA + "Block Two Selected!");
+				
+				if(SessionManager.selSessions.get(player).getLocationTwo() == null)
+					player.sendMessage("Selection 2 Not Sucessfull!");
 			}
 		}else if(e.getAction().equals(Action.LEFT_CLICK_BLOCK)){
-			if(e.getPlayer().getItemInHand().equals(Material.BLAZE_ROD) && SessionManager.selSessions.containsKey(e.getPlayer())){
-				SessionManager.selSessions.get(e.getPlayer()).setLocationTwo(e.getClickedBlock().getLocation());
-				e.getPlayer().sendMessage(ChatColor.AQUA + "Block Two Selected!");
+			if(player.getInventory().getItemInHand().getType().equals(Material.BLAZE_ROD) && SessionManager.selSessions.containsKey(player)){
+				SessionManager.selSessions.get(player).setLocationOne(e.getClickedBlock().getLocation().toVector());
+				player.sendMessage(ChatColor.AQUA + "Block One Selected!");
+				
+				if(SessionManager.selSessions.get(player).getLocationOne() == null)
+					player.sendMessage("Selection 1 Not Sucessfull!");
 			}
 		}
 		

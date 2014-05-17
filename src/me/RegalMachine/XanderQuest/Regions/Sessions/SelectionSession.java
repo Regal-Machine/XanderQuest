@@ -1,14 +1,16 @@
 package me.RegalMachine.XanderQuest.Regions.Sessions;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
+import me.RegalMachine.XanderQuest.Regions.Region;
+import me.RegalMachine.XanderQuest.Regions.WorldManager;
+
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 public class SelectionSession {
 	
-	private Location loc1, loc2;
+	private Vector vLoc1 = null;
+	private Vector vLoc2 = null;
 	private World world;
 	
 	public SelectionSession(Player p){
@@ -19,41 +21,33 @@ public class SelectionSession {
 		return world;
 	}
 	
-	public void setLocationOne(Location loc){
-		loc1 = loc;
+	public void setLocationOne(Vector loc){
+		vLoc1 = new Vector(loc.getBlockX(),loc.getBlockY(),loc.getBlockZ());
 	}
 	
-	public void setLocationTwo(Location loc){
-		loc2 = loc;
+	public void setLocationTwo(Vector loc){
+		vLoc2 = new Vector(loc.getBlockX(),loc.getBlockY(),loc.getBlockZ());
 	}
 	
-	public Location getLocationOne(){
-		return loc1;
+	public Vector getLocationOne(){
+		return vLoc1;
 	}
 	
-	public Location getLocationTwo(){
-		return loc2;
-	}
-	
-	public Vector getLocationOneVector(){
-		return new Vector(loc1.getBlockX(), loc1.getBlockY(), loc1.getBlockZ());
-	}
-	
-	public Vector getLocationTwoVector(){
-		return new Vector(loc2.getBlockX(), loc2.getBlockY(), loc2.getBlockZ());
+	public Vector getLocationTwo(){
+		return vLoc2;
 	}
 	
 	public boolean canCreateRegion(){
 		
-		if(loc1 != null && loc2 != null)
+			if(vLoc1 == null || vLoc2 == null)
+				return false;
+			
 			return true;
-		
-		return false;
 	}
 	
 	public void createRegion() {
 		// TODO Auto-generated method stub
-		Bukkit.getServer().broadcastMessage("Simulate Making of a Reigon!");
+		WorldManager.worlds.get(world).regions.add(new Region(vLoc1, vLoc2));
 	}
 	
 	

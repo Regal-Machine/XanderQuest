@@ -10,8 +10,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class WorldManager {
 		
+	
 	public static Map<World, RegionManager> worlds = new HashMap<World, RegionManager>();
+	
+	
 	public static List<RegionManager> regionManagers = new ArrayList<RegionManager>();
+	
+	
 	FileConfiguration regions = null;
 	
 	

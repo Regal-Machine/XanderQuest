@@ -4,12 +4,9 @@ import me.RegalMachine.XanderQuest.Regions.Region;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerMoveEvent;
 
-public class RegionChangeEvent extends Event implements Listener{
+public class RegionChangeEvent extends Event{
 	
 	private static final HandlerList handlers = new HandlerList();
 	
@@ -50,15 +47,6 @@ public class RegionChangeEvent extends Event implements Listener{
 	
 	public static HandlerList getHandlerList(){
 		return handlers;
-	}
-	
-	
-	
-	
-	
-	@EventHandler
-	public void onPlayerMove(PlayerMoveEvent e){
-		
 	}
 	
 	
