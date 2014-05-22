@@ -1,5 +1,7 @@
 package me.RegalMachine.XanderQuest.Regions.Events;
 
+import me.RegalMachine.XanderQuest.Regions.AbstractRegion;
+import me.RegalMachine.XanderQuest.Regions.GlobalRegion;
 import me.RegalMachine.XanderQuest.Regions.Region;
 
 import org.bukkit.entity.Player;
@@ -10,24 +12,30 @@ public class RegionChangeEvent extends Event{
 	
 	private static final HandlerList handlers = new HandlerList();
 	
-	private Region Eregion;
-	private Region previous;
+	private AbstractRegion Eregion;
+	private AbstractRegion previous;
 	private Player Eplayer;
 	
 	
 	
-	public RegionChangeEvent(Region region,Region previouss, Player player){
+	public RegionChangeEvent(AbstractRegion region ,AbstractRegion previouss, Player player){
 		Eregion = region;
 		Eplayer = player;
 		previous = previouss;
 	}
 	
-	public Region getRegion(){
-		return Eregion;
+	public Object getRegion(){
+		if(Eregion instanceof GlobalRegion)
+			return (GlobalRegion) Eregion;
+		else
+			return (Region) Eregion;
 	}
 	
-	public Region getPreviousRegion(){
-		return previous;
+	public Object getPreviousRegion(){
+		if(Eregion instanceof GlobalRegion)
+			return (GlobalRegion) previous;
+		else
+			return (Region) previous;
 	}
 	
 	
