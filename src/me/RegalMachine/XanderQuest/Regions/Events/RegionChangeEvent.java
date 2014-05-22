@@ -11,33 +11,29 @@ public class RegionChangeEvent extends Event{
 	private static final HandlerList handlers = new HandlerList();
 	
 	private Region Eregion;
+	private Region previous;
 	private Player Eplayer;
-	private boolean cancelled;
 	
 	
 	
-	public RegionChangeEvent(Region region, Player player){
+	public RegionChangeEvent(Region region,Region previouss, Player player){
 		Eregion = region;
 		Eplayer = player;
+		previous = previouss;
 	}
 	
 	public Region getRegion(){
 		return Eregion;
 	}
 	
+	public Region getPreviousRegion(){
+		return previous;
+	}
+	
+	
 	public Player getPlayer(){
 		return Eplayer;
 	}
-	
-	public void setCancled(boolean b){
-		cancelled = b;
-	}
-	
-	public boolean isCancelled(){
-		return cancelled;
-	}
-	
-	
 	
 	@Override
 	public HandlerList getHandlers() {

@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.util.Vector;
 
-public class Region {
+public class Region extends AbstractRegion{
 	
-	Vector v1, v2;
+	private String name;
+	private Vector v1, v2;
 	List<SubRegion> subRegions = new ArrayList<SubRegion>();
 	
-	public Region(Vector vect1, Vector vect2){
+	public Region(Vector vect1, Vector vect2, String namee){
 		int xlow, xhigh, zlow, zhigh, ylow, yhigh;
 		
 		if(vect1.getBlockX() >= vect2.getBlockX()){
@@ -41,8 +43,15 @@ public class Region {
 		v1 = new Vector(xlow, ylow, zlow);
 		v2 = new Vector(xhigh, yhigh, zhigh);
 		
-		getRegionManager().regions.add(this);
+		name = namee;
 		
+	}
+	public Vector getLowVector(){
+		return v1;
+	}
+	
+	public Vector getHighVector(){
+		return v2;
 	}
 	
 	public RegionManager getRegionManager(){
@@ -61,9 +70,9 @@ public class Region {
 	}
 	
 	
-	public int getID(){
+	public String getName(){
 		//Go in config and do it.
-		return 0;
+		return name;
 	}
 	
 	public String getDesc(){

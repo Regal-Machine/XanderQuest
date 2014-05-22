@@ -16,19 +16,25 @@ public class RegionCommands implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
 		Player p = Bukkit.getPlayer(sender.getName());
-		if(args[0].equalsIgnoreCase("create")){
-			if(SessionManager.selSessions.containsKey(p)){
-				if(SessionManager.selSessions.get(p).canCreateRegion()){
-					SessionManager.selSessions.get(p).createRegion();
-					p.sendMessage(ChatColor.AQUA + "You have created a Quest Region!");
-				}else{
-					p.sendMessage(ChatColor.AQUA + "You must select a region first!");
-				}
-			}else{
-				p.sendMessage(ChatColor.AQUA + "You must select a Start a session first!");
-			}
+		
+		if(args.length != 2){
+			p.sendMessage("/region create [name]");
+			return true;
 		}
 		
+			if(args[0].equalsIgnoreCase("create")){
+				
+				if(SessionManager.selSessions.containsKey(p)){
+					if(SessionManager.selSessions.get(p).canCreateRegion()){
+						SessionManager.selSessions.get(p).createRegion(args[1]);
+						p.sendMessage(ChatColor.AQUA + "You have created a Quest Region!");
+					}else{
+						p.sendMessage(ChatColor.AQUA + "You must select a region first!");
+					}
+				}else{
+					p.sendMessage(ChatColor.AQUA + "You must select a Start a session first!");
+				}
+			}
 		return true;
 	}
 

@@ -45,9 +45,9 @@ public class SelectionSession {
 			return true;
 	}
 	
-	public void createRegion() {
+	public void createRegion(String name) {
 		// TODO Auto-generated method stub
-		WorldManager.worlds.get(world).regions.add(new Region(vLoc1, vLoc2));
+		WorldManager.worlds.get(world).addRegion(new Region(vLoc1, vLoc2, name));
 	}
 	
 	
